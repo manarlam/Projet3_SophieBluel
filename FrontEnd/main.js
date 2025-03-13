@@ -16,7 +16,7 @@ async function getWorks() {
 
 getWorks();
 
-async function getFilters() {
+async function getCategories() {
     const url = "http://localhost:5678/api/categories";
     try {
         const response = await fetch(url);
@@ -32,26 +32,44 @@ async function getFilters() {
     }
 }
 
-getFilters();
+getCategories();
 
-// Intégration des filtres dans la page
+// Intégration des filtres dans la page avec une boucle for
 
-const container = document.createElement("div");
-document.body.appendChild(container);
+// function genererFiltre(categorie) {
+//     for (let i = 0; i < categorie.length; i++) {
+
+//         const div = document.createElement("div");
+//         div.innerHTML = categorie[i].name;
+//         const divParent = document.querySelector(".filter-container");
+//         divParent.appendChild(div);
+//     }
+// }
+
+// Intégration des filtres dans la page avec un Set
 
 function genererFiltre(categories) {
-    for (let i = 0; i < categories.length; i++) {
+    const divParent = document.querySelector(".filter-container");
 
+    const uniqueCategories = new Set(categories.map(item => item.name)); 
+    /*map pour créer un nouveau tableau et item pour transformer l'objet en nom seulement*/
+
+    uniqueCategories.forEach(categories => { /*forEach pour parcourir le tableau*/
         const btn = document.createElement("button");
-        btn.innerHTML = `<button>${categories[i].name}</button>`;
-        
-        container.appendChild(btn);
-
-
-    }
+        btn.textContent= categories;
+        btn.classList.add("filter-item");
+        btn.addEventListener("click", () => filterItems(categories));
+        divParent.appendChild(btn);
+    });
+    
+    console.log(uniqueCategories);
 }
 
-
+const filterItems = (works, categoryId) => {
+    const filtered = works.filter(item => item.categoryId == categoryId);
+    return filtered;
+    
+};
 
 // Intégration des oeuvres dans la page
 
