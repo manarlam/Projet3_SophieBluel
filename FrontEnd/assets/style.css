@@ -146,10 +146,17 @@ li:hover {
 	border-radius: 60px ;
 	height: 30px;
 	font-size: 1.2em;
-	padding: 0 20px;
+	padding: 15px 20px;
 	margin-bottom: 50px;
 	margin-top: 20px;
 }
+
+.filter-item:hover {
+	background-color: #1D6154;
+	color: white;
+	cursor: pointer;
+}
+
 .gallery {
 	width: 100%;
 	display: grid;

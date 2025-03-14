@@ -1,95 +1,94 @@
+// Fonction pour récupérer les œuvres via l'API
 async function getWorks() {
     const url = "http://localhost:5678/api/works";
     try {
         const response = await fetch(url);
         if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
+            throw new Error(`Erreur HTTP : ${response.status}`);
         }
 
-        const json = await response.json();
-        console.log(json);
-        genererOeuvre(json);
+        const works = await response.json();
+        genererOeuvre(works);
+        getCategories(works);
     } catch (error) {
-        console.error(error.message);
+        console.error("Erreur lors du chargement des œuvres :", error.message);
     }
 }
 
-getWorks();
-
-async function getCategories() {
+// Fonction pour récupérer les catégories via l'API et générer les filtres
+async function getCategories(works) {
     const url = "http://localhost:5678/api/categories";
     try {
         const response = await fetch(url);
         if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
+            throw new Error(`Erreur HTTP : ${response.status}`);
         }
 
-        const json = await response.json();
-        console.log(json);
-        genererFiltre(json);
+        const categories = await response.json();
+        genererFiltre(categories, works);
     } catch (error) {
-        console.error(error.message);
+        console.error("Erreur lors du chargement des catégories :", error.message);
     }
 }
+// Fonction pour générer les boutons de filtre
+function genererFiltre(categories, works) {
+    if (!categories || !works) {
+        console.error("Erreur : catégories ou œuvres non définies !");
+        return;
+    }
 
-getCategories();
-
-// Intégration des filtres dans la page avec une boucle for
-
-// function genererFiltre(categorie) {
-//     for (let i = 0; i < categorie.length; i++) {
-
-//         const div = document.createElement("div");
-//         div.innerHTML = categorie[i].name;
-//         const divParent = document.querySelector(".filter-container");
-//         divParent.appendChild(div);
-//     }
-// }
-
-// Intégration des filtres dans la page avec un Set
-
-function genererFiltre(categories) {
     const divParent = document.querySelector(".filter-container");
+    divParent.innerHTML = ""; 
 
-    const uniqueCategories = new Set(categories.map(item => item.name)); 
-    /*map pour créer un nouveau tableau et item pour transformer l'objet en nom seulement*/
+    const uniqueCategories = new Set(categories.map(category => category.id));
 
-    uniqueCategories.forEach(categories => { /*forEach pour parcourir le tableau*/
-        const btn = document.createElement("button");
-        btn.textContent= categories;
-        btn.classList.add("filter-item");
-        btn.addEventListener("click", () => filterItems(categories));
-        divParent.appendChild(btn);
+    // Bouton "Tous" pour afficher toutes les œuvres
+    const btnAll = document.createElement("button");
+    btnAll.textContent = "Tous";
+    btnAll.classList.add("filter-item");
+    btnAll.addEventListener("click", () => genererOeuvre(works));
+    divParent.appendChild(btnAll);
+
+    // Création des boutons de catégorie
+    categories.forEach(category => {
+        if (uniqueCategories.has(category.id)) {
+            const btn = document.createElement("button");
+            btn.textContent = category.name;
+            btn.classList.add("filter-item");
+            btn.addEventListener("click", () => filterItems(works, category.id)); // Définir works et category Id
+            divParent.appendChild(btn);
+
+            uniqueCategories.delete(category.id);
+        }
     });
-    
-    console.log(uniqueCategories);
+
+    console.log("Filtres générés :", uniqueCategories);
 }
 
+// Fonction pour filtrer et afficher les œuvres
 const filterItems = (works, categoryId) => {
-    const filtered = works.filter(item => item.categoryId == categoryId);
-    return filtered;
-    
+    if (!works) {
+        console.error("Erreur : works est undefined !");
+        return;
+    }
+    const filteredWorks = works.filter(item => item.categoryId === categoryId);
+    genererOeuvre(filteredWorks);
 };
 
-// Intégration des oeuvres dans la page
-
+// Fonction pour afficher les œuvres
 function genererOeuvre(oeuvre) {
-    for (let i = 0; i < oeuvre.length; i++) {
+    const figureParent = document.querySelector(".gallery");
+    figureParent.innerHTML = ""; 
 
+    oeuvre.forEach(item => {
         const figure = document.createElement("figure");
-        figure.innerHTML = `<img src=${oeuvre[i].imageUrl} alt="${oeuvre[i].title}">
-        <figcaption>${oeuvre[i].title}</figcaption>`;
+        figure.innerHTML = `<img src="${item.imageUrl}" alt="${item.title}">
+        <figcaption>${item.title}</figcaption>`;
 
-        const figureParent = document.querySelector(".gallery");
         figureParent.appendChild(figure);
-    }
+    });
 }
 
 
-
-
-
-
-
-
-
+// Lancer le chargement des œuvres au chargement de la page
+document.addEventListener("DOMContentLoaded", getWorks);
