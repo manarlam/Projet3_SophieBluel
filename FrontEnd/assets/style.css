@@ -35,6 +35,10 @@ body {
 ol, ul {
 	list-style: none;
 }
+a {
+	text-decoration: none;
+	color: inherit;
+}
 blockquote, q {
 	quotes: none;
 }
@@ -98,6 +102,9 @@ nav li {
 
 li:hover {
 	color: #B1663C;
+}
+.lost-pw {
+	text-decoration: underline;
 }
 #introduction {
 	display: flex;
@@ -200,6 +207,40 @@ margin: auto;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+#login {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	margin: auto;
+	padding-top: 100px;
+}
+#login input {
+	height: 50px;
+	width: 379px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+#login input[type="submit"] {
+	font-size: 1em;
+	height: 36px;
+	width: 180px;
+	margin: 2.2em auto;
+}
+#login label {
+	margin: 2em 0 1em 0;
+}
+#login form {
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+}
+#login h2{
+	margin-bottom: 20px;
+}
+
 
 input[type="submit"]{
 	font-family: 'Syne';
