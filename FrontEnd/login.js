@@ -1,22 +1,25 @@
-// const loginApi = "http://localhost:5678/api/users/login";
+const loginApi = "http://localhost:5678/api/users/login";
 
-// async function handleSubmit() {
-//     let user = {
-//         email: "sophie.bluel@test.tld",
-//         password: "S0phie",
-//     };
+document.getElementById("loginForm").addEventListener("submit", handleSubmit);
 
-// let response = await fetch(loginApi, {
-//     method: "POST",
-//     headers: {
-//         "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(user),
-// });
+async function handleSubmit(event) {
+  event.preventDefault(); // Prevent the form from submitting
 
-// let result = await response.json();
-// console.log(result);
-// alert(result.message);
-// }
- 
-// handleSubmit();
+  let user = {
+    email: document.getElementById("email").value,
+    password: document.getElementById("password").value
+  };
+
+  let response = await fetch(loginApi, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+
+  let result = await response.json();
+  console.log(result);
+  alert(result.message);
+}
+
