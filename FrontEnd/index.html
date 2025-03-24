@@ -8,16 +8,20 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
+	<script src="https://kit.fontawesome.com/335da68c8f.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="./assets/style.css">	
 </head>
 <body>
+	<div id="edit-bar">
+		<p class="edit-title"><i class="fa-regular fa-pen-to-square"></i>Mode édition</p>	
+	</div>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<a href="login.html"><li>login</li></a>
+			<a href="login.html" id="login-link" class="login-btn"><li>login</li></a>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -35,7 +39,7 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+			<h2>Mes Projets <span class="editBtn"><i class="fa-regular fa-pen-to-square"></i>modifier</span></h2>
 		<div class="filter-container"></div>
 		<div class="gallery"></div>
 	</section>
@@ -62,5 +66,6 @@
 	</nav>
 </footer>
 <script src="main.js" defer></script>
+<script src="admin.js" defer></script>
 </body>
 </html>

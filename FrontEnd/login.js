@@ -1,25 +1,39 @@
 const loginApi = "http://localhost:5678/api/users/login";
 
-document.getElementById("loginForm").addEventListener("submit", handleSubmit);
-
-async function handleSubmit(event) {
-  event.preventDefault(); // Prevent the form from submitting
+document.getElementById("loginForm").addEventListener("submit", async (event) => {
+event.preventDefault();   
 
   let user = {
     email: document.getElementById("email").value,
     password: document.getElementById("password").value
-  };
+};
 
   let response = await fetch(loginApi, {
     method: "POST",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify(user),
-  });
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(user),  
+});
 
   let result = await response.json();
-  console.log(result);
-  alert(result.message);
-}
+  
+  let editBar = document.getElementById("edit-bar");
+
+  if (response.ok){
+    const token =result.token;
+    sessionStorage.setItem("loginToken", token);
+    localStorage.setItem("isLoggedIn", "true");
+    alert("Connexion réussie !")
+    window.location.href = "index.html";
+    editBar.style.display = "block";
+
+  } else {
+    let errorMessage = document.createElement("p");
+    errorMessage.id = "error-message";
+    errorMessage.textContent= "Identitifants et Mots de passe incorrects";
+    errorMessage.style.color = "red";
+    errorMessage.style.textAlign = "center";
+    document.getElementById("loginForm").appendChild(errorMessage);  
+  }
+});
+
 

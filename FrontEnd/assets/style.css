@@ -87,8 +87,9 @@ h2{
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
-	color: #1D6154
+	color: #1D6154;
 }
+
 nav ul {
 	display: flex;
 	align-items: center;
@@ -102,7 +103,37 @@ nav li {
 
 li:hover {
 	color: #B1663C;
+	cursor: pointer;
 }
+.login-btn {
+	padding: 0 10px;
+}
+
+.login-btn:hover {
+	color: #B1663C;
+	cursor: pointer;
+}
+
+#edit-bar {
+	display: none;
+	margin-bottom: 80px;
+}
+
+.edit-title {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	background-color: black;
+	color: white;
+	padding: 20px;
+	gap: 10px;
+	width: 100vw;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
 .lost-pw {
 	text-decoration: underline;
 }
@@ -130,16 +161,29 @@ li:hover {
 	margin-bottom: 0.5em;
 }
 #portfolio h2 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	text-align: center;
 	margin-bottom: 1em;
 }
-
+.editBtn {
+	display: none;
+	color: black;
+	font-size: 14px;
+	font-weight: normal;
+	font-family: 'Work Sans'; 
+	padding-left: 20px;
+}
+.editBtn:hover {
+	color: #B1663C;
+	cursor: pointer;
+}
 .filter-container {
 	display: flex;
 	justify-content: center;
 	gap: 10px;
 }
-
 .filter-item {
 	display:flex;
 	align-items: center;
