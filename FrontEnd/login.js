@@ -16,6 +16,7 @@ event.preventDefault();
 
   let result = await response.json();
   
+  let editBar = document.getElementById("edit-bar");
 
   if (response.ok){
     const token =result.token;
@@ -23,6 +24,7 @@ event.preventDefault();
     localStorage.setItem("isLoggedIn", "true");
     alert("Connexion réussie !")
     window.location.href = "index.html";
+    editBar.style.display = "block";
 
   } else {
     let errorMessage = document.createElement("p");
