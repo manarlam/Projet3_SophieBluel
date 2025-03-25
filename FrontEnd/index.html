@@ -12,6 +12,16 @@
 	<link rel="stylesheet" href="./assets/style.css">	
 </head>
 <body>
+	<aside id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="titlemodal" style="display:none">
+		<div class="modal-wrapper js-modal-stop">
+			<div class="modal-closeBtn"><button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button></div>
+			<h3 class="titlemodal">Galerie Photo</h3>
+			<div class="modal-gallery"></div>
+			<div class="modal-button-container">
+				<button class="add-photoBtn">Ajouter une photo</button>
+			</div>
+		</div>
+	</aside>
 	<div id="edit-bar">
 		<p class="edit-title"><i class="fa-regular fa-pen-to-square"></i>Mode édition</p>	
 	</div>
@@ -39,7 +49,7 @@
 		</article>
 	</section>
 	<section id="portfolio">
-			<h2>Mes Projets <span class="editBtn"><i class="fa-regular fa-pen-to-square"></i>modifier</span></h2>
+			<h2>Mes Projets <span class="editBtn"><a href="#modal" class="js-modal"><i class="fa-regular fa-pen-to-square"></i>modifier</a></span></h2>
 		<div class="filter-container"></div>
 		<div class="gallery"></div>
 	</section>
