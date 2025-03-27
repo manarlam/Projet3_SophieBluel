@@ -11,6 +11,7 @@ async function getWorks() {
         genererOeuvre(works);
         getCategories(works);
         genererModalOeuvre(works);
+        
     } catch (error) {
         console.error("Erreur lors du chargement des œuvres :", error.message);
     }

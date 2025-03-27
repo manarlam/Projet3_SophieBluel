@@ -11,14 +11,53 @@
 	<script src="https://kit.fontawesome.com/335da68c8f.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="./assets/style.css">	
 </head>
+
 <body>
 	<aside id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="titlemodal" style="display:none">
 		<div class="modal-wrapper js-modal-stop">
-			<div class="modal-closeBtn"><button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button></div>
-			<h3 class="titlemodal">Galerie Photo</h3>
-			<div class="modal-gallery"></div>
-			<div class="modal-button-container">
-				<button class="add-photoBtn">Ajouter une photo</button>
+			<div id="galleryView">
+				<div class="modal-closeBtn">
+					<button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
+				</div>
+				<h3 class="titlemodal">Galerie Photo</h3>
+				<div class="modal-gallery"></div>
+				<div class="modal-button-container">
+					<button class="add-photoBtn">Ajouter une photo</button>
+				</div>
+			</div>
+<!-- Ajout photo modale  -->
+			<div id="addPhotoView" style="display:none">
+				<div class="modal-navBtn">
+					<button class="js-modal-back"><i class="fa-solid fa-arrow-left"></i></button>
+					<button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
+				</div>
+				<h3 class="titlemodal">Ajout photo</h3>
+				<div class="form add-photo-form">
+					<form id="picture-form" action="#" method="post">
+						<div class="file-section">
+							<div id="photo-container"></div>
+							<div class="photo-loaded-container">
+								<div><i class="fa-regular fa-image picture-loaded"></i></div>
+								<label class="picture-loaded" for="file">+ Ajouter photo</label>
+								<input type="file" id="file" name="file" accept="image/png, image/jpeg" class="hidden-input"/>
+								<p class="picture-loaded">jpg, png : 4mo max</p>
+							</div>
+						</div>
+						<label for="title">Titre</label>
+						<input type="text" name="title" id="title"/>
+						<label for="category">Catégorie</label>
+						<select id="category" name="category">
+							<option value="" class="hidden-option"></option>
+							<option value="1">Objets</option>
+							<option value="2">Appartements</option>
+							<option value="3">Hotels & restaurants</option>
+						</select>
+						<div class="error-message-container"></div>
+						<div class="modal-button-container">
+						<button class="validate-photoBtn" disabled>Valider</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</aside>

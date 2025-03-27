@@ -164,6 +164,10 @@ li:hover {
 	display: flex;
 	justify-content: flex-end;
 }
+.modal-navBtn{
+	display: flex;
+	justify-content: space-between;
+}
 .modal-button-container{
     display: flex;
     justify-content: center;
@@ -190,7 +194,16 @@ li:hover {
 	background-color: white;
 	font-size: 18px;
 }
+.js-modal-back {
+	border: none;
+	background-color: white;
+	font-size: 18px;
+}
 .js-modal-close:hover {
+	cursor: pointer;
+	color: rgb(0,0,0, 0.5)
+}
+.js-modal-back:hover {
 	cursor: pointer;
 	color: rgb(0,0,0, 0.5)
 }
@@ -200,6 +213,41 @@ li:hover {
     display: block;
 	margin-top: 20px;
     margin-bottom: 46px;
+}
+.photo-loaded-container {
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+}
+
+.file-section {
+	background-color: #E8F1F6;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 5px;
+}
+
+.file-section label {
+	padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 25px;
+    font-family: 'Work Sans';
+	font-size: 18px;
+    color: white;
+    cursor: pointer;
+    background-color: #CBD6DC;
+	color: #306685;
+    width: 170px;
+	height: 30px;
+	text-align: center;
+	align-content: center;
+}
+.fa-image {
+	color: #B9C5CC;
+	font-size: 80px;
+	margin-top: 5px;
 }
 
 @keyframes fadeIn {
@@ -240,7 +288,64 @@ li:hover {
 	background-color: black;
 	padding: 5px;
 	border-radius: 3px;
-	
+}
+.hidden {
+	display: none;
+}
+.hidden-input {
+	display: none;
+}
+.form {
+	width: 50%;
+	margin: auto;
+}
+.hidden-option {
+	display:none;	
+}
+.form form {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+}
+.form input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+.form select {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+.form label {
+	margin: 1em 0;
+}
+.form textarea {
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+.add-photo-form {
+	width: 75%;
+}
+.validate-photoBtn {
+    padding: 10px 20px;
+    margin-top: 40px;
+    border: 1px solid #1D6154;
+    border-radius: 25px;
+    font-family: 'Syne';
+	font-size: 14px;
+    color: white;
+    cursor: pointer;
+    background-color: #1D6154;
+    width: 250px;
+}
+.validate-photoBtn:hover {
+	cursor: pointer;
+	background-color: #1D6154;
+	filter: opacity(90%);
 }
 /* End Modal */
 .lost-pw {
