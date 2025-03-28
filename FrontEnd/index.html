@@ -13,7 +13,7 @@
 </head>
 
 <body>
-	<aside id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="titlemodal" style="display:none">
+	<section id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="false" aria-label="titlemodal" style="display:none">
 		<div class="modal-wrapper js-modal-stop">
 			<div id="galleryView">
 				<div class="modal-closeBtn">
@@ -39,15 +39,15 @@
 							<div class="photo-loaded-container">
 								<div><i class="fa-regular fa-image picture-loaded"></i></div>
 								<label class="picture-loaded" for="file">+ Ajouter photo</label>
-								<input type="file" id="file" name="file" accept="image/png, image/jpeg" class="hidden-input"/>
+								<input type="file" id="file" name="file" accept="image/png, image/jpeg" class="hidden-input">
 								<p class="picture-loaded">jpg, png : 4mo max</p>
 							</div>
 						</div>
 						<label for="title">Titre</label>
-						<input type="text" name="title" id="title"/>
+						<input type="text" name="title" id="title">
 						<label for="category">Catégorie</label>
 						<select id="category" name="category">
-							<option value="" class="hidden-option"></option>
+							<option value="" class="hidden-option"> </option>
 							<option value="1">Objets</option>
 							<option value="2">Appartements</option>
 							<option value="3">Hotels & restaurants</option>
@@ -60,7 +60,7 @@
 				</div>
 			</div>
 		</div>
-	</aside>
+	</section>
 	<div id="edit-bar">
 		<p class="edit-title"><i class="fa-regular fa-pen-to-square"></i>Mode édition</p>	
 	</div>
@@ -70,7 +70,7 @@
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<a href="login.html" id="login-link" class="login-btn"><li>login</li></a>
+			<li><a href="login.html" id="login-link" class="login-btn">login</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
