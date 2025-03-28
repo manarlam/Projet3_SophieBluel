@@ -37,20 +37,39 @@ const openModal = function (e) {
     modal.removeAttribute("aria-hidden");
     modal.setAttribute("aria-modal", "true");
     modal.addEventListener("click", closeModal)
-    modal.querySelector(".js-modal-close").addEventListener("click", closeModal)
+    modal.querySelectorAll(".js-modal-close").forEach(button => {
+      button.addEventListener("click", closeModal);
+    });
     modal.querySelector(".js-modal-stop").addEventListener("click", stopPropagation)
 }
 
 const closeModal = function (e) {
   if (modal === null) return
   e.preventDefault();
-    modal.style.display = "none";
-    modal.setAttribute("aria-hidden", "true");
-    modal.removeAttribute("aria-modal");
-    modal.removeEventListener("click", closeModal)
-    modal.querySelector(".js-modal-close").removeEventListener("click", closeModal)
-    modal.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation)
-    modal = null
+
+ // Forcer le retour à la galerie
+ const addPhotoView = document.getElementById("addPhotoView");
+ const galleryView = document.getElementById("galleryView");
+ galleryView.style.display = "block";
+ addPhotoView.style.display = "none";
+
+ // Réinitialiser le formulaire
+ document.getElementById("picture-form").reset();
+ document.getElementById("photo-container").innerHTML = "";
+ document.querySelector(".photo-loaded-container").classList.remove("hidden");
+ document.querySelector(".validate-photoBtn").classList.remove("filled");
+
+ // Supprimer les messages d'erreur
+ document.querySelector(".error-message-container").innerHTML = "";
+
+// Fermer la modale
+modal.style.display = "none";
+modal.setAttribute("aria-hidden", "true");
+modal.removeAttribute("aria-modal");
+modal.removeEventListener("click", closeModal)
+modal.querySelector(".js-modal-close").removeEventListener("click", closeModal)
+modal.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation)
+modal = null
 }
 
 const stopPropagation = function (e) {
@@ -123,26 +142,33 @@ async function deleteWork(event) {
   if (!confirm("Voulez-vous vraiment supprimer cette photo ?")) return;
 
   try {
-      const response = await fetch(`http://localhost:5678/api/works/${id}`, {
-          method: "DELETE",
-          headers: {
-              "Authorization": `Bearer ${token}`
-          }
-      });
-
-      if (response.status == 401 || response.status == 500) {
-        const errorBox = document.createElement("div");
-        errorBox.className = "error-login";
-        errorBox.innerHTML = "Il y a eu une erreur";
-        document.querySelector(".modal-button-container").prepend(errorBox);
+    const response = await fetch(`http://localhost:5678/api/works/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`
       }
+});
 
-      if (response.ok) {
-          // Suppression immédiate de l'image dans l'UI
-          document.querySelector(`figure[data-id="${id}"]`).remove();
-      } else {
-          alert("Erreur lors de la suppression !");
-      }
+  if (response.status == 401 || response.status == 500) {
+    const errorBox = document.createElement("div");
+    errorBox.className = "error-login";
+    errorBox.innerHTML = "Il y a eu une erreur";
+    document.querySelector(".modal-button-container").prepend(errorBox);
+    }
+
+    if (!response.ok) {
+      alert("Erreur lors de la suppression !");
+      return;
+  }
+
+  // Supprimer l'image de la modale
+  document.querySelector(`.modal-gallery figure[data-id="${id}"]`).remove();
+
+  // Supprimer l'image de la galerie principale (éviter de recharger toute la galerie)
+  const photoInGallery = document.querySelector(`.gallery figure[data-id="${id}"]`);
+  if (photoInGallery) {
+      photoInGallery.remove();
+  }
   } catch (error) {
       console.error("Erreur lors de la suppression :", error);
   }
@@ -162,8 +188,14 @@ function toggleModal() {
     galleryView.style.display = "none";
     addPhotoView.style.display ="block";
 
-    // Nettoyer les messages d'erreur
-    document.querySelector(".error-message-container").innerHTML = "";
+  // Réinitialisation du formulaire et de l'aperçu de l'image en revenant à la galerie
+  document.getElementById("picture-form").reset();
+  document.getElementById("photo-container").innerHTML = "";
+  document.querySelector(".photo-loaded-container").classList.remove("hidden");
+  document.querySelector(".error-message-container").innerHTML = "";
+  document.querySelector(".validate-photoBtn").classList.remove("filled");
+  // Nettoyer les messages d'erreur
+  document.querySelector(".error-message-container").innerHTML = "";
 
   } else {
     galleryView.style.display = "block";
@@ -208,6 +240,7 @@ document.getElementById("file").addEventListener("change", function (event) {
     imgPreview.alt = "Aperçu de l'image";
     imgPreview.style.width = "129px"; // Ajuster la taille
     imgPreview.style.height = "193px";
+    imgPreview.style.objectFit = "cover";
     imgPreview.style.borderRadius = "0px";
 
     photoContainer.appendChild(imgPreview);
@@ -249,9 +282,8 @@ document.getElementById("picture-form").addEventListener("submit", async functio
     showError("Vous devez être connecté.");
     return;
   }
-
+// Création du FormData pour envoyer les fichiers
   try {
-  // Création du FormData pour envoyer les fichiers
   const formData = new FormData();
   formData.append("image", file);
   formData.append("title", title);
@@ -352,20 +384,34 @@ function addPhotoToModal(item) {
   figure.querySelector(".fa-trash-can").addEventListener("click", deleteWork);
 }
 
-// Activer/Désactiver le bouton "Valider" si tous les champs sont remplis
+// // Bouton Valider
+
 document.getElementById("picture-form").addEventListener("input", function () {
   try {
-  const fileInput = document.getElementById("file").files.length > 0;
-  const title = document.getElementById("title").value.trim() !== "";
-  const category = document.getElementById("category").value !== "";
+    const fileInput = document.getElementById("file").files.length > 0;
+    const title = document.getElementById("title").value.trim() !== "";
+    const category = document.getElementById("category").value !== "";
+    const validateBtn = document.querySelector(".validate-photoBtn");
+    validateBtn.removeAttribute("disabled"); // Toujours actif
 
-  const validateBtn = document.querySelector(".validate-photoBtn");
   if (fileInput && title && category) {
-    validateBtn.removeAttribute("disabled");
-  } else {
-    validateBtn.setAttribute("disabled", "true");
+      validateBtn.classList.add("filled"); // Passe en vert
+      } else {
+      validateBtn.classList.remove("filled"); // Reste gris
+    }
+  } catch (error) {
+    console.error("Erreur de validation du formulaire :", error);
   }
-} catch (error) {
-  console.error("Erreur de validation du formulaire :", error);
-}
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const editModeButton = document.querySelector(".edit-title");
+  const modifyButton = document.querySelector(".js-modal");
+
+  if (editModeButton && modifyButton) {
+      editModeButton.addEventListener("click", function (event) {
+          event.preventDefault();
+          modifyButton.click(); // Simule un clic sur "Modifier"
+      });
+  }
 });

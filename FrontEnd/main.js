@@ -84,6 +84,7 @@ function genererOeuvre(oeuvre) {
 
     oeuvre.forEach(item => {
         const figure = document.createElement("figure");
+        figure.dataset.id = item.id; // Ajouter l'ID a l'élément figure
         figure.innerHTML = `<img src="${item.imageUrl}" alt="${item.title}">
         <figcaption>${item.title}</figcaption>`;
 
