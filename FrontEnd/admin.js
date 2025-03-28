@@ -168,7 +168,6 @@ function toggleModal() {
   } else {
     galleryView.style.display = "block";
     addPhotoView.style.display ="none";
-
   }
 }
 
@@ -217,13 +216,14 @@ document.getElementById("file").addEventListener("change", function (event) {
   reader.readAsDataURL(file); // Lire l'image sous forme d'URL
 });
 
+// Soumission du formulaire
 document.getElementById("picture-form").addEventListener("submit", async function (event) {
   event.preventDefault();
 
   const fileInput = document.getElementById("file");
-  const file = fileInput.files[0]; // Récupérer le fichier
-  const title = document.getElementById("title").value.trim(); // Récupérer le titre
-  const category = document.getElementById("category").value; // Récupérer la catégorie
+  const file = fileInput.files[0]; 
+  const title = document.getElementById("title").value.trim(); 
+  const category = document.getElementById("category").value; 
 
   // Vérifier que tous les champs sont remplis
   if (!file || !title || !category) {
@@ -251,33 +251,31 @@ document.getElementById("picture-form").addEventListener("submit", async functio
   }
 
   try {
-    // Création du FormData pour envoyer les fichiers
-    const formData = new FormData();
-    formData.append("image", file);
-    formData.append("title", title);
-    formData.append("category", category);
+  // Création du FormData pour envoyer les fichiers
+  const formData = new FormData();
+  formData.append("image", file);
+  formData.append("title", title);
+  formData.append("category", category);
 
-    // Envoi à l'API
-    const response = await fetch("http://localhost:5678/api/works", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${token}`,
-      },
-      body: formData,
-    });
+  // Envoi à l'API
+  const response = await fetch("http://localhost:5678/api/works", {
+  method: "POST",
+  headers: {
+  "Authorization": `Bearer ${token}`,
+  },
+  body: formData,
+});
 
-    if (!response.ok) {
-      throw new Error("Erreur lors de l'ajout de la photo.");
-    }
+  if (!response.ok) {
+  throw new Error("Erreur lors de l'ajout de la photo.");
+  }
 
-    const newWork = await response.json();
-    addPhotoToGallery(newWork);
-    addPhotoToModal(newWork);
+  const newWork = await response.json();
+  addPhotoToGallery(newWork);
+  addPhotoToModal(newWork);
 
-    // Réinitialiser le formulaire après l'ajout
-    
-    document.getElementById("picture-form").reset();
-    document.querySelector(".validate-photoBtn").setAttribute("disabled", "true");
+  document.getElementById("picture-form").reset();  // Réinitialiser le formulaire après l'ajout
+  document.querySelector(".validate-photoBtn").setAttribute("disabled", "true");
 
   // Réinitialiser l'image sélectionnée
   const fileInput = document.getElementById("file");
@@ -290,8 +288,8 @@ document.getElementById("picture-form").addEventListener("submit", async functio
   const addPhotoContainer = document.querySelector(".photo-loaded-container");
   addPhotoContainer.classList.remove("hidden")
 
-    // Nettoyer les messages d'erreur après un ajout réussi
-    document.querySelector(".error-message-container").innerHTML = "";
+  // Nettoyer les messages d'erreur après un ajout réussi
+  document.querySelector(".error-message-container").innerHTML = "";
 
   } catch (error) {
     console.error("Erreur:", error);
@@ -322,6 +320,7 @@ function showError(message) {
 
   errorContainer.appendChild(errorBox);
 }
+
 // Ajouter les images à la galerie principale
 function addPhotoToGallery(item) {
   const gallery = document.querySelector(".gallery");
