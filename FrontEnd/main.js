@@ -32,6 +32,7 @@ async function getCategories(works) {
         console.error("Erreur lors du chargement des catégories :", error.message);
     }
 }
+
 // Fonction pour générer les boutons de filtre
 function genererFiltre(categories, works) {
     if (!categories || !works) {
@@ -91,7 +92,6 @@ function genererOeuvre(oeuvre) {
         figureParent.appendChild(figure);
     });
 }
-
 
 // Lancer le chargement des œuvres au chargement de la page
 document.addEventListener("DOMContentLoaded", getWorks);

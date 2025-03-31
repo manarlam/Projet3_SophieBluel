@@ -70,7 +70,6 @@ header {
 section {
 	margin: 50px 0
 }
-
 h1{
 	display: flex;
 	flex-direction: column;
@@ -79,21 +78,18 @@ h1{
 	font-weight: 800;
 	color: #B1663C
 }
-
 h1 > span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
 ;
 }
-
 h2{
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
 	color: #1D6154;
 }
-
 nav ul {
 	display: flex;
 	align-items: center;
@@ -104,7 +100,6 @@ nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
-
 li:hover {
 	color: #B1663C;
 	cursor: pointer;
@@ -112,7 +107,6 @@ li:hover {
 .login-btn {
 	padding: 0 10px;
 }
-
 .login-btn:hover {
 	color: #B1663C;
 	cursor: pointer;
@@ -135,7 +129,6 @@ li:hover {
 	top: 0;
 	left: 0;
 }
-
 .edit-title:hover {
 	cursor: pointer;
 	text-decoration: underline;
@@ -174,13 +167,20 @@ li:hover {
 	justify-content: space-between;
 }
 .modal-button-container{
+	position: absolute;
+	bottom: 50px;
+	left: 0;
+	right:0;
+	width: 480px;
 	border-top: solid 1px #B3B3B3;
     display: flex;
     justify-content: center;	
+	align-items: center;
+	margin: auto;
 }
 .add-photoBtn {
     padding: 10px 20px;
-    margin-top: 40px;
+    margin-top: 35px;
     border: 1px solid #1D6154;
     border-radius: 25px;
     font-family: 'Syne';
@@ -224,17 +224,16 @@ li:hover {
 	display:flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 20px;
+	padding: 0 10px 10px 10px;
 }
-
 .file-section {
 	background-color: #E8F1F6;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	border-radius: 5px;
+	height: 193px;
 }
-
 .file-section label {
 	padding: 10px 20px;
     margin-top: 10px;
@@ -246,7 +245,7 @@ li:hover {
     background-color: #CBD6DC;
 	color: #306685;
     width: 170px;
-	height: 30px;
+	height: 20px;
 	text-align: center;
 	align-content: center;
 }
@@ -255,7 +254,6 @@ li:hover {
 	font-size: 80px;
 	margin-top: 5px;
 }
-
 @keyframes fadeIn {
 	from {opacity: 0;}
 	to {opacity: 1;}
@@ -265,13 +263,12 @@ li:hover {
 	to {transform: translate(0px);}
 }
 .modal-gallery {
-	width: 78%;
+	width: 80%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	grid-column-gap: 10px;
 	grid-row-gap: 20px;
 	margin: auto;
-	padding-bottom: 60px;
 }
 .modal-gallery img {
 	width: 100%;
@@ -337,7 +334,7 @@ li:hover {
 }
 .validate-photoBtn {
     padding: 10px 20px;
-    margin-top: 40px;
+    margin-top: 35px;
     background-color: #A7A7A7;
 	border: 1px solid #A7A7A7;
     border-radius: 25px;
@@ -372,14 +369,12 @@ li:hover {
 	margin: auto;
 	width: 80%;
 }
-
 #introduction article {
 	flex: 1
 }
 #introduction h2 {
 	margin-bottom: 1em;
 }
-
 #introduction p {
 	margin-bottom: 0.5em;
 }
@@ -420,13 +415,11 @@ li:hover {
 	margin-bottom: 50px;
 	margin-top: 20px;
 }
-
 .filter-item:hover {
 	background-color: #1D6154;
 	color: white;
 	cursor: pointer;
 }
-
 .gallery {
 	width: 100%;
 	display: grid;
@@ -434,10 +427,8 @@ li:hover {
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
 }
-
 .gallery img {
 	width: 100%;
-
 }
 #contact {
 	width: 50%;
@@ -445,7 +436,6 @@ margin: auto;
 }
 #contact > * {
 	text-align: center;
-
 }
 #contact h2{
 	margin-bottom: 20px;
@@ -456,7 +446,6 @@ margin: auto;
 	display: flex;
 	flex-direction: column;
 }
-
 #contact input {
 	height: 50px;
 	font-size: 1.2em;
@@ -503,8 +492,6 @@ margin: auto;
 #login h2{
 	margin-bottom: 20px;
 }
-
-
 input[type="submit"]{
 	font-family: 'Syne';
 	font-weight: 700;
@@ -520,7 +507,6 @@ input[type="submit"]:hover {
 	background-color: #1D6154;
 	filter: opacity(90%);
 }
-
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
