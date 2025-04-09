@@ -76,7 +76,7 @@ const filterItems = (works, categoryId) => {
     }
     const filteredWorks = works.filter(item => item.categoryId === categoryId);
     genererOeuvre(filteredWorks);
-};
+}; 
 
 // Fonction pour afficher les œuvres
 function genererOeuvre(oeuvre) {
