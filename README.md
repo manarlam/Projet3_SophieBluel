@@ -1,20 +1,36 @@
-# Portfolio-architecte-sophie-bluel
+# Projet - Site Web d'une Architecte d'Intérieur
 
-Code du projet 6 d'intégrateur web.
+## Description du projet
+Ce projet consistait à développer une page web interactive pour une architecte d'intérieur, en utilisant JavaScript et en établissant une communication avec une API. Mon travail s’est concentré sur la partie Front-End, avec une attention particulière portée à la gestion des événements utilisateurs et à la manipulation du DOM.
 
-## Architecture
+Les fonctionnalités principales incluent : 
 
-Ce repo git contient les 2 briques logicielles du projet 
-- Frontend
-- Backend
+- Développement de la page de présentation des réalisations de l’architecte à partir du HTML existant.
+- Création d’une interface de connexion dédiée à l’administrateur du site.
+- Intégration d’une modale permettant l’ajout de nouveaux médias via l’interface.
 
-## Pour le lancer le code
-### Backend
-Ouvrir le dossier Backend et lire le README.md
+Ce projet a été l’occasion d'approfondir l’utilisation de JavaScript tout en interagissant pour la première fois avec un code back-end pour tester et valider les fonctionnalités. Les outils utilisés incluent Figma pour les maquettes, Visual Studio Code pour le développement, et GitHub pour la gestion de version.
 
-### Frontend
-Ouvrir le dossier Frontend et lancer liveserver de votre IDE
- 
-## Astuce
- 
-Si vous désirez afficher le code du backend et du frontend, faites le dans 2 instances de VSCode différentes pour éviter tout problème
+## Objectifs pédagogiques
+
+- Maîtriser la manipulation du DOM avec JavaScript.
+- Gérer les événements pour dynamiser l’interaction utilisateur.
+- Communiquer efficacement avec une API pour charger et envoyer des données.
+- Développer des composants web "from scratch" afin de consolider les compétences en JavaScript.
+
+## Compétences développées
+
+- Création de pages web dynamiques et interactives.
+- Utilisation avancée de JavaScript pour la gestion des interactions utilisateurs.
+- Communication avec une API pour la partie Front-End.
+- Développement de modales fonctionnelles et de systèmes de connexion sécurisés.
+
+## Technologies utilisées
+
+- **HTML**
+- **CSS**
+- **JavaScript**
+- **API** 
+- **Figma** 
+- **Visual Studio Code**
+- **GitHub** 
