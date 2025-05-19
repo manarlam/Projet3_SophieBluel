@@ -1,5 +1,7 @@
 # Projet - Site Web d'une Architecte d'Intérieur
 
+[![My Skills](https://skillicons.dev/icons?i=html,css,js)](https://skillicons.dev)
+
 ## Description du projet
 Ce projet consistait à développer une page web interactive pour une architecte d'intérieur, en utilisant JavaScript et en établissant une communication avec une API. Mon travail s’est concentré sur la partie Front-End, avec une attention particulière portée à la gestion des événements utilisateurs et à la manipulation du DOM.
 
